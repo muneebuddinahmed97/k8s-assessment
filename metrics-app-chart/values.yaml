@@ -1,0 +1,27 @@
+replicaCount: 1
+
+image:
+  repository: muneebuddinahmed/metrics-app
+  tag: "2.0"
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 3000
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 128Mi
+  limits:
+    cpu: 200m
+    memory: 256Mi
+
+ingress:
+  enabled: true
+  className: nginx
+  hosts:
+    - host: metrics.local
+      paths:
+        - path: /
+          pathType: Prefix
